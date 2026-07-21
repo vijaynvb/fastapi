@@ -12,8 +12,7 @@ global_router_v2 = APIRouter(prefix="/api/v2")
 employee_router_v1 = APIRouter(prefix="/employees")
 employee_router_v2 = APIRouter(prefix="/employees")
 
-# api/v1/employees 
-# api/v1/departments
+# api/v1/employees
 
 @employee_router_v1.get("/")
 def read_root_v1():
