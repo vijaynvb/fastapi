@@ -4,12 +4,14 @@ import uvicorn
 app = FastAPI(
     title="My API",
     description="This is a sample API",
-    version="1.0.0"
+    version="1.0.0",
+    root_path="/api/v1"
 )
 
 @app.get("/")
 def read_root():
     return {"Hello": "world"}
+
 
 @app.get("/employees/{id}")
 # validation framwork errors
