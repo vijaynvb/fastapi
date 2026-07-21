@@ -1,6 +1,9 @@
 from pydantic import BaseModel
+from uuid import UUID
+
+
 class Todo(BaseModel):
-    id: int
+    id: UUID
     title: str
     description: str
     completed: bool
@@ -16,7 +19,7 @@ class TodoUpdate(BaseModel):
     completed: bool | None = None
 
 class ResponseTodo(BaseModel):
-    id: int
+    id: UUID
     title: str
     description: str
     completed: bool
