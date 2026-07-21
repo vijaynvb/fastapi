@@ -18,5 +18,10 @@ department_router = APIRouter(prefix="/departments")
 def read_root():
     return {"name": "vijay", "age": 30}
 
+@department_router.get("/")
+def read_root():
+    return {"department": "IT", "location": "New York"}
+
 global_router.include_router(employee_router)
+global_router.include_router(department_router)
 app.include_router(global_router)
