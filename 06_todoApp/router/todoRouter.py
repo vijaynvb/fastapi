@@ -39,5 +39,5 @@ def update_todo_v1(todo_id: UUID, updated_todo: TodoUpdate): # accepting the dat
 def delete_todo_v1(todo_id: UUID):
     deleted_todo = delete_todo(todo_id)
     if deleted_todo is None:
-        raise TodoNotFoundException(todo_id=todo_id)
+        raise TodoNotFoundException(todo_id=todo_id) # object is created todonotfoundexception and passed the todo_id to the constructor of the class and then raised the exception
     return deleted_todo
