@@ -1,4 +1,4 @@
-from utils.logging_config import setup_logging
+from config.logging_config import setup_logging
 from datetime import datetime
 import time
 import uuid
