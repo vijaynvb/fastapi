@@ -7,12 +7,12 @@ from services.todoFileDB import get_all_todos, add_todo, update_todo, delete_tod
 
 todo_router_v1 = APIRouter(prefix="/todos", tags=["Todos"])
 
-@todo_router_v1.get("/",tags=["Todos"], summary="Get all todos", description="Get all todos from the database")
+@todo_router_v1.get("/",tags=["Todos"], response_model=list[ResponseTodo], summary="Get all todos", description="Get all todos from the database")
 def read_root_v1():
     todos = get_all_todos()
     return todos
 
-@todo_router_v1.get("/{todo_id}",tags=["Todos"], summary="Get a todo by id", description="Get a todo by id from the database")
+@todo_router_v1.get("/{todo_id}",tags=["Todos"], response_model=ResponseTodo, summary="Get a todo by id", description="Get a todo by id from the database")
 def read_todo_v1(todo_id: UUID):
     todo = next((todo for todo in get_all_todos() if str(todo["id"]) == str(todo_id)), None)
     if todo is None:
