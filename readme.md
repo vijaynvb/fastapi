@@ -30,3 +30,9 @@ $ uvicorn app:app --reload
     c - api -> function
     http api -> rest api -> endpoint CRUD
     mongodb -> api -> methods db.find(), db.insert(), db.update(), db.delete()
+
+
+healthRoute
+  1. /health {"health": "ok"}
+  2. /metrics/mem {"memory": "value"}
+  3. /metrics/cpu {"cpu": "value"}
