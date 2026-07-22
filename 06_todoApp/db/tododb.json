@@ -1,4 +1,11 @@
 {
-    "todos": [],
+    "todos": [
+        {
+            "id": "3a4d718a-63cb-4773-b723-04fb649727de",
+            "title": "string",
+            "description": "string",
+            "completed": false
+        }
+    ],
     "users": []
 }

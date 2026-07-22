@@ -29,7 +29,7 @@ def read_item(id: int, deptid: int):
 def read_item(pageno: int = 1, limit: int = 10 ):
     return {"pageno": pageno, "limit": limit}
 
-# if __name__ =="__main__":
-#     uvicorn.run(app,host="localhost", port=5000)
+if __name__ =="__main__":
+    uvicorn.run(app,host="localhost", port=5000)
 
     
