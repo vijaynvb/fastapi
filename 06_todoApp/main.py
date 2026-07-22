@@ -1,11 +1,12 @@
 import json
 from fastapi import APIRouter, FastAPI
+from fastapi.responses import JSONResponse
 from middlewares.jsontoxmlmiddleware import content_negotiation_middleware
 from middlewares.loggingmiddleware import log_requests as logging_middleware
 from router.todoRouter import todo_router_v1
 from router.userRouter import user_router_v1
 from router.healthRouter import metrics_router
-
+from exceptions.TodoNotFoundException import TodoNotFoundException, todo_not_found_exception_handler
 # httpclient, ftpclient, smtpclient 
 
 app = FastAPI(title="Todo App")
@@ -21,6 +22,8 @@ global_router_v1.include_router(todo_router_v1)
 global_router_v1.include_router(user_router_v1)
 global_router_v1.include_router(metrics_router)
 app.include_router(global_router_v1)
+app.add_exception_handler(Exception, lambda request, exc: JSONResponse(status_code=500, content={"message": str(exc)}))
+app.add_exception_handler(TodoNotFoundException, todo_not_found_exception_handler)
 
 @app.get("/health",tags=["Metrics"], summary="Get Health of Application", description="Get Health of Application")
 def read_health():

@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from exceptions.TodoNotFoundException import TodoNotFoundException
 
 DB_PATH = Path(__file__).parent.parent / "db" / "tododb.json"
 
@@ -32,7 +33,17 @@ def _save_todos(todos):
     _save_db(db)
 
 def get_all_todos():
-    return _load_db()["todos"]
+    todos = _load_db().get("todos", []) 
+    if not todos:
+        raise TodoNotFoundException(todo_id="N/A")  # Raise exception if no todos found
+    return todos
+
+def get_todo_byid(todo_id):
+    todos = _load_db().get("todos", []) 
+    for todo in todos:
+        if str(todo["id"]) == str(todo_id):
+            return todo
+    raise TodoNotFoundException(todo_id=todo_id)  # Raise exception if todo not found
     
 def add_todo(todo):
     todos = get_all_todos()
