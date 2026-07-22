@@ -4,6 +4,7 @@ from uuid import UUID, uuid4
 
 from schema.todoSchema import ResponseTodo, Todo, TodoCreate, TodoUpdate
 from services.todoFileDB import get_all_todos, add_todo, update_todo, delete_todo
+from exceptions.TodoNotFoundException import TodoNotFoundException
 
 todo_router_v1 = APIRouter(prefix="/todos", tags=["Todos"])
 
@@ -16,7 +17,7 @@ def read_root_v1():
 def read_todo_v1(todo_id: UUID):
     todo = next((todo for todo in get_all_todos() if str(todo["id"]) == str(todo_id)), None)
     if todo is None:
-        return {"error": "Todo not found"}
+        raise TodoNotFoundException(todo_id=todo_id)
     return todo
 
 # return the data to client after creating, updating, and deleting the data in the database 
@@ -31,12 +32,12 @@ def update_todo_v1(todo_id: UUID, updated_todo: TodoUpdate): # accepting the dat
     updated_todo_data = Todo(id=todo_id, title=updated_todo.title, description=updated_todo.description, completed=updated_todo.completed)
     updated_todo = update_todo(todo_id, updated_todo_data)
     if updated_todo is None:
-        return {"error": "Todo not found"}
+        raise TodoNotFoundException(todo_id=todo_id)
     return updated_todo
 
 @todo_router_v1.delete("/{todo_id}",tags=["Todos"], response_model=ResponseTodo, summary="Delete a todo by id", description="Delete a todo by id from the database")
 def delete_todo_v1(todo_id: UUID):
     deleted_todo = delete_todo(todo_id)
     if deleted_todo is None:
-        return {"error": "Todo not found"}
+        raise TodoNotFoundException(todo_id=todo_id)
     return deleted_todo
