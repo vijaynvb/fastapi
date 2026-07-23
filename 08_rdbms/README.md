@@ -2,6 +2,18 @@
 
 A complete FastAPI application demonstrating CRUD (Create, Read, Update, Delete) operations with PostgreSQL database integration.
 
+## Prerequisiets 
+
+Postgresql Server
+PGAdmin
+
+Docker Command:
+```
+docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+
+---
+
 ## Project Structure
 
 ```
@@ -213,3 +225,5 @@ uvicorn main:app --reload --port 8001
 ### Module Import Errors
 
 Ensure all files are in the correct directory structure and the virtual environment is activated.
+
+
