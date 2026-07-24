@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from uuid import UUID, uuid4
 
 from schema.todoSchema import ResponseTodo, Todo, TodoCreate, TodoUpdate
-from services.todoFileDB import get_all_todos, add_todo, update_todo, delete_todo
+from services.rdbms.todoPgDb import get_all_todos, add_todo, update_todo, delete_todo
 from exceptions.TodoNotFoundException import TodoNotFoundException
 
 todo_router_v1 = APIRouter(prefix="/todos", tags=["Todos"])

@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "hashed_password": "$2a$12$qy0EXtAjWTINZ/sGCM3fpeLtmBsT16m64t7RopPmmupli5wvPh7De",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "username": "user1",
+    "hashed_password": "$2b$12$2xWlrjrpt3dR0C.Z1uHOg.iCAAzK9wC7hzHowX6B2Er5x6hailxym",
+    "role": "user"
+  }
+]
